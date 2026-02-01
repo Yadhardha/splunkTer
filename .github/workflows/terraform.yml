@@ -1,0 +1,24 @@
+name : Terraform-splunk      
+
+on :
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+
+jobs:
+  Terraform:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name : checkout code
+        uses: actions/checkout@v4
+      - name: setup Terraform
+        uses: hashicrop/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+      - name : terraform init
+        run : terraform init
+      - name : terraform plan
+        run : terraform plan
